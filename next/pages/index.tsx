@@ -29,12 +29,12 @@ const Index: FC = () => {
                         <>
                             {loading && <p >Loading...</p>}
                             {error && (
-                                <div className="border-solid border-2 border-red-600 p-4 rounded">{error.message}</div>
+                                <div className="">{error.message}</div>
                             )}
                             {
                                 data && (
                                     data.getPosts.map(({ markdown, _id }: any) => (
-                                        <Card className="mb-5 p-3" key={_id}>
+                                        <Card className="mb-5 card" key={_id}>
                                             {parse(mdParser.render(markdown))}
                                         </Card>
                                     ))
