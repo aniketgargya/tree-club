@@ -1,0 +1,17 @@
+.dragNDrop{
+    padding: 2rem;
+    border: 2px dashed black;
+    cursor: pointer;
+}
+
+.dragNDrop p {
+    margin-bottom: 0;
+}
+
+.post-button{
+    display: block;
+}
+
+.copy{
+    cursor: pointer;
+}
