@@ -13,8 +13,6 @@ import MarkdownIt from 'markdown-it';
 import { useMutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import dotenv from 'dotenv';
-
 const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
     ssr: false
 });
@@ -138,7 +136,6 @@ const Index = ({ clientId }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-    dotenv.config();
     return {
         props: {
             clientId: process.env.IMGUR_CLIENT_ID

@@ -15,7 +15,7 @@ class MyApp extends App {
         const { Component, pageProps } = this.props;
 
         const client = new ApolloClient({
-            uri: 'http://localhost:3000/graphql',
+            uri: process.env.GRAPHQL_ENDPOINT,
             fetch
         });
 
