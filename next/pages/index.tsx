@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
+import Link from 'next/link';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import { Card } from 'react-bootstrap';
+import { Card, Nav } from 'react-bootstrap';
+import { NavBar } from '../components/';
 
 const getPosts = gql`
 {
@@ -20,9 +22,10 @@ const Index: FC = () => {
 
     return (
         <>
-            <div>
-                <h1 className="text-center">Tree Club</h1>
-            </div>
+            <NavBar />
+            <header>
+                <h1 className="text-center">Welcome to Uni's Tree Club</h1>
+            </header>
             <div className="mx-5 mw-100">
                 <Query query={getPosts}>
                     {({ loading, error, data }: any) => (
@@ -34,7 +37,7 @@ const Index: FC = () => {
                             {
                                 data && (
                                     data.getPosts.map(({ markdown, _id }: any) => (
-                                        <Card className="mb-5 card" key={_id}>
+                                        <Card className="mb-5" key={_id}>
                                             {parse(mdParser.render(markdown))}
                                         </Card>
                                     ))

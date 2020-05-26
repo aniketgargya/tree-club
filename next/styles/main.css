@@ -1,5 +1,27 @@
-/* Create */
-.dragNDrop{
+body {
+    background-color: rgba(0, 255, 76, 0.03);
+}
+
+/* Header */
+header {
+    padding:10rem 2rem;
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .25), rgba(0,0,0,.25)), url("/memorial-stadium.jpg");
+    color: white;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-weight: 100;
+}
+
+.card img {
+    width: 100%;
+}
+
+/* Create Page */
+.dragNDrop {
     padding: 2rem;
     border: 2px dashed black;
     cursor: pointer;
@@ -26,4 +48,13 @@
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Navbar */
+nav.navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 1rem 2rem;
 }

@@ -91,7 +91,7 @@ const Index = ({ clientId }) => {
                 Post
             </Button>
 
-            <table className="table mt-5">
+            <table className={`table ${uploadedImages.length == 0 || "mt-5"}`}>
                 <tbody>
                     {
                         uploadedImages.map((uploadedImage, i) => (

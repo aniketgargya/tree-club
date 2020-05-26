@@ -1,6 +1,4 @@
-# The Music Charts
-Deployed Version available at http://tree-club.herokuapp.com/
-
+# Tree-Club
 Buit with Bootstrap, Next.js, Imgur API, Apollo, and MongoDB.
 
 ## Description
