@@ -1,0 +1,7 @@
+node_modules
+github-readme
+next/.next
+.env
+.gitignore
+.git
+README.md

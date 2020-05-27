@@ -1,0 +1,14 @@
+version: '3'
+services:
+    server:
+        build: .
+        container_name: express-nextjs
+        ports:
+            - 4000:3000
+        environment:
+            - MONGO_URI=${MONGO_URI}
+            - NODE_ENV=${NODE_ENV}
+            - IMGUR_CLIENT_ID=${IMGUR_CLIENT_ID}
+            - GRAPHQL_ENDPOINT=${GRAPHQL_ENDPOINT}
+        volumes:
+            - ./:/usr/src/app
