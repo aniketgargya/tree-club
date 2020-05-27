@@ -2,9 +2,9 @@ version: '3'
 services:
     server:
         build: .
-        container_name: express-nextjs
+        container_name: tree-club-server
         ports:
-            - ${PORT}:3000
+            - 4000:3000
         environment:
             - MONGO_URI=${MONGO_URI}
             - NODE_ENV=${NODE_ENV}
