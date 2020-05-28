@@ -15,7 +15,7 @@ class MyApp extends App {
         const { Component, pageProps } = this.props;
 
         const client = new ApolloClient({
-            uri: process.env.GRAPHQL_ENDPOINT,
+            uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
             fetch
         });
 

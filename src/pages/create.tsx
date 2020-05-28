@@ -56,7 +56,6 @@ const Index = ({ clientId }) => {
         const fd = new FormData();
         fd.append('image', file);
         if (file) {
-            console.log('here');
             setUploadingImage(true);
 
             const response = await fetch('https://api.imgur.com/3/image', {
@@ -71,7 +70,6 @@ const Index = ({ clientId }) => {
 
             setUploadingImage(false);
             setUploadedImages(previousUploadedImages => {
-                console.log(previousUploadedImages.concat([data.data.link]));
                 return previousUploadedImages.concat([data.data.link]);
             });
         }
@@ -138,7 +136,7 @@ const Index = ({ clientId }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
     return {
         props: {
-            clientId: process.env.IMGUR_CLIENT_ID
+            clientId: process.env.NEXT_PUBLIC_IMGUR_CLIENT_ID
         }
     }
 };

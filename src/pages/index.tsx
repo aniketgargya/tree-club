@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import Link from 'next/link';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import { Card, Nav } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 import { NavBar } from '../components/';
 
 const getPosts = gql`
