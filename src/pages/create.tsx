@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback, useMemo } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
@@ -133,7 +133,7 @@ const Index = ({ clientId }) => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
     return {
         props: {
             clientId: process.env.NEXT_PUBLIC_IMGUR_CLIENT_ID
