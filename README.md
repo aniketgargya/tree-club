@@ -1,50 +1,31 @@
 # Tree-Club
-Buit with Bootstrap, Next.js, Imgur API, Apollo, and MongoDB.
+Buit with React-Bootstrap, Next.js, Imgur API, Apollo, and MongoDB.
 
 ## Description
-A web app I created that allows the site owner to create markdown posts and upload images via the Imgur API. These posts can be viewed on the home page.
+A web app I created that allows the users to create markdown posts and upload images via the Imgur API. These posts can be viewed on the home page. This is was originally created for the University Laboratory High School Tree Club.
 
 ## Setup
-To run this, download the repo and do the following.
+To run this, you'll need the following:
 
-- Create an Imgur Application at https://api.imgur.com/oauth2/addclient.
+- An Imgur Application at https://api.imgur.com/oauth2/addclient and to copy the client id
 
-- Copy the client id.
+- A random string as a Json Web Token Secret
 
-- Install dependences:
-```bash
-npm install
+- A ```.env``` file:
+```
+NEXT_PUBLIC_IMGUR_CLIENT_ID=1234567890
+NEXT_PUBLIC_GRAPHQL_ENDPOINT=http://localhost:3000/api/graphql
+
+MONGO_URI=mongodb//localhost:27017
+JWT_SECRET=1234567890
 ```
 
-- Create a ```.env``` file:
-```bash
-touch .env # on mac and linux
-```
-
-- Put your Imgur client id, graphql url, node environment, and mongo uri in the file like so:
-```
-MONGO_URI=mongodb://localhost:27017
-NODE_ENV=development
-IMGUR_CLIENT_ID=1234567890
-GRAPHQL_ENDPOINT=http://localhost:3000/graphql
-```
-
-- Start in development mode:
-```bash
-npm run dev
-```
-
-- Start in production mode:
-```bash
-npm run build && npm run start
-```
-
-### 🥳 It should be running 🥳
+The application can be run with Docker or without it. If you would like to run it with Docker, checkout the example build and start commands in the ```package.json``` folder.
 
 ## Special Thanks
 Thanks to all of these companies!
 
-[![Tailwindcss](/github-readme/tailwindcss.png)](https://tailwindcss.com/)
+[![React Bootstrap](/github-readme/react-bootstrap.png)](https://react-bootstrap.github.io/)
 
 [![Next.js](/github-readme/nextjs.png)](https://nextjs.org/)
 
@@ -53,5 +34,3 @@ Thanks to all of these companies!
 [![Apollo](/github-readme/apollo.png)](https://www.apollographql.com/)
 
 [![MongoDB](/github-readme/mongo.jpg)](https://www.mongodb.com/)
-
-[![Heroku](/github-readme/heroku.png)](https://heroku.com/)

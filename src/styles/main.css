@@ -1,5 +1,15 @@
 body {
-    background-color: rgb(151, 255, 166);
+    background-color: rgba(151, 255, 167, 0.666);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    text-decoration: none;
+    color: white;
 }
 
 /* Header */

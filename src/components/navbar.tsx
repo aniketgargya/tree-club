@@ -8,7 +8,7 @@ const NavBar: FC = () => {
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Tree Club</Navbar.Brand>
+            <Link href="/"><a href="navbar-brand">Tree Club</a></Link>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ml-auto">

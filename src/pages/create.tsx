@@ -17,6 +17,7 @@ const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
     ssr: false
 });
 
+import { NavBar } from '../components/index';
 import { removeErrorLabel } from '../helper/formatter';
 
 const CREATE_POST = gql`
@@ -30,7 +31,7 @@ mutation($markdown: String!) {
 `;
 
 
-const Index = ({ clientId }) => {
+const CreatePage = ({ clientId }) => {
     const markdown = useRef('Type up your post here!');
     const [file, setFile] = useState(undefined);
     const [uploadingImage, setUploadingImage] = useState(false);
@@ -78,61 +79,64 @@ const Index = ({ clientId }) => {
     }, [file, setUploadingImage, setUploadedImages]);
 
     return (
-        <main className="p-5">
-            <MdEditor
-                value="Type up your post here!"
-                renderHTML={renderHTML}
-            />
+        <>
+            <NavBar />
+            <main className="p-5">
+                <MdEditor
+                    value="Type up your post here!"
+                    renderHTML={renderHTML}
+                />
 
-            <Button
-                className="px-5 mt-5 post-button"
-                onClick={() => mutate({ variables: { markdown: markdown.current } })}
-            >
-                Post
+                <Button
+                    className="px-5 mt-5 post-button"
+                    onClick={() => mutate({ variables: { markdown: markdown.current } })}
+                >
+                    Post
             </Button>
 
-            <table className={`table ${uploadedImages.length == 0 || "mt-5"}`}>
-                <tbody>
-                    {
-                        uploadedImages.map((uploadedImage, i) => (
-                            <tr key={i}>
-                                <td>
-                                    <a href={uploadedImage}>{uploadedImage}</a>
-                                </td>
-                                <td>
-                                    <CopyToClipboard text={uploadedImage}><span className="copy">Copy</span></CopyToClipboard>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                <table className={`table ${uploadedImages.length == 0 || "mt-5"}`}>
+                    <tbody>
+                        {
+                            uploadedImages.map((uploadedImage, i) => (
+                                <tr key={i}>
+                                    <td>
+                                        <a href={uploadedImage}>{uploadedImage}</a>
+                                    </td>
+                                    <td>
+                                        <CopyToClipboard text={uploadedImage}><span className="copy">Copy</span></CopyToClipboard>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
 
-            {
-                uploadingImage ? <Spinner animation="border" className="mt-5" /> : (
-                    <>
-                        <div {...getRootProps()} className="dragNDrop mt-5" style={{ backgroundColor: "white" }}>
-                            <input {...getInputProps()} />
-                            {
-                                isDragActive ?
-                                    <p>Drop the files here ...</p> :
-                                    <p>Drag 'n' drop some files or click here</p>
-                            }
-                        </div>
+                {
+                    uploadingImage ? <Spinner animation="border" className="mt-5" /> : (
+                        <>
+                            <div {...getRootProps()} className="dragNDrop mt-5" style={{ backgroundColor: "white" }}>
+                                <input {...getInputProps()} />
+                                {
+                                    isDragActive ?
+                                        <p>Drop the files here ...</p> :
+                                        <p>Drag 'n' drop some files or click here</p>
+                                }
+                            </div>
 
-                        {file && (
-                            <Button
-                                className="px-5 mt-5"
-                                onClick={() => { postToImgur(); }}
-                            >
-                                Upload to Imgur
-                            </Button>
-                        )}
-                    </>
-                )
-            }
-            {error && <Alert className="mt-3" variant="danger">{removeErrorLabel(error.message)}</Alert>}
-        </main>
+                            {file && (
+                                <Button
+                                    className="px-5 mt-5"
+                                    onClick={() => { postToImgur(); }}
+                                >
+                                    Upload to Imgur
+                                </Button>
+                            )}
+                        </>
+                    )
+                }
+                {error && <Alert className="mt-3" variant="danger">{removeErrorLabel(error.message)}</Alert>}
+            </main>
+        </>
     );
 };
 
@@ -144,4 +148,4 @@ export const getStaticProps: GetStaticProps = async () => {
     }
 };
 
-export default Index;
+export default CreatePage;
