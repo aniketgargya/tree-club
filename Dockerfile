@@ -4,9 +4,6 @@ WORKDIR /app
 
 ENV FORCE_COLOR=1
 
-ARG imgurclientid
-ENV NEXT_PUBLIC_IMGUR_CLIENT_ID=${imgurclientid}
-
 COPY package.json .
 COPY package-lock.json .
 RUN npm i
