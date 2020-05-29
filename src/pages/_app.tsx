@@ -17,6 +17,7 @@ class MyApp extends App {
         console.log(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT);
         const client = new ApolloClient({
             uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+            // @ts-ignore
             fetch
         });
 
