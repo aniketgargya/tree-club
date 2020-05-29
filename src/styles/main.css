@@ -81,12 +81,12 @@ nav.navbar {
 }
 
 @media only screen and (max-width: 400px) {
+    .card {
+        padding: 1rem;
+    }
+
     .card .card-header .card-profile-image {
         height: 2rem;
         width: 2rem;
-    }
-
-    .card {
-        padding: 1rem;
     }
 }
