@@ -52,12 +52,18 @@ header h1 {
 
 /* Index */
 .card {
-    width: 80%;
+    width: 90%;
     max-width: 60rem;
     padding: 1rem 3rem;
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+}
+
+.card .card-header .card-profile-image {
+    border-radius: 50%;
+    height: 3.5rem;
+    width: 3.5rem;
 }
 
 /* Navbar */
@@ -72,4 +78,15 @@ nav.navbar {
 /* Create */
 .editor-container {
      min-height: 10rem !important;
+}
+
+@media only screen and (max-width: 400px) {
+    .card .card-header .card-profile-image {
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .card {
+        padding: 1rem;
+    }
 }

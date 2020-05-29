@@ -30,7 +30,7 @@ const Index: FC = () => {
             <header>
                 <h1 className="text-center">Welcome to Uni's Tree Club</h1>
             </header>
-            <div className="mx-5 mw-100">
+            <div className="feed">
                 <Query query={getPosts}>
                     {({ loading, error, data }: any) => (
                         <>
@@ -40,9 +40,9 @@ const Index: FC = () => {
                                 data && (
                                     data.getPosts.map(({ markdown, _id, author: { imageURL, name } }: any) => (
                                         <Card className="mb-5" key={_id}>
-                                            <div className="pb-2 mb-2" style={{ borderBottom: "1px grey solid" }}>
-                                                <img src={imageURL} style={{ borderRadius: "50%", height: "3.5rem", width: "3.5rem" }} />
-                                                <span style={{ marginLeft: "1rem" }}>{name}</span>
+                                            <div className="py-3 px-2 mb-4 card-header">
+                                                <img src={imageURL} className="card-profile-image" />
+                                                <span className="ml-2">{name}</span>
                                             </div>
                                             {parse(mdParser.render(markdown))}
                                         </Card>
