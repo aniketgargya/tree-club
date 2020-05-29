@@ -2,6 +2,7 @@ import React, { useState, useContext, FC } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Form, Button, Card, Spinner, Alert } from 'react-bootstrap';
+import Link from 'next/link';
 import { NavBar } from '../components/';
 import { removeErrorLabel } from '../helper/formatter';
 import { TokenContext } from '../contexts/';
@@ -49,7 +50,7 @@ const SignIn: FC = () => {
                             Submit
                         </Button>
                     )}
-
+                    <Link href="/sign-up"><a className="mt-3" style={{ color: "black", textDecoration: "underline", display: "block" }}>Or Sign Up Instead</a></Link>
                     {error && <Alert className="mt-3" variant="danger">{removeErrorLabel(error.message)}</Alert>}
                 </Form>
             </Card>
