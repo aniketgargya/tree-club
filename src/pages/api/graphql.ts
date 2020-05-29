@@ -1,7 +1,7 @@
 import { gql, ApolloServer, ApolloError, AuthenticationError } from 'apollo-server-micro';
 import { v4 } from 'uuid';
 import { getPosts, createPost } from '../../backend/resolvers/post';
-import { author, imageURL, signUp, logIn } from '../../backend/resolvers/auth';
+import { author, imageURL, signUp, signIn } from '../../backend/resolvers/auth';
 import chalk from 'chalk';
 
 const typeDefs = gql`
@@ -26,7 +26,7 @@ type JWT {
 
 type Query {
     getPosts: [Post!]!
-    logIn(email: String!, password: String!): JWT!
+    signIn(email: String!, password: String!): JWT!
 }
 
 type Mutation {
@@ -45,7 +45,7 @@ const resolvers = {
     },
     Query: {
         getPosts,
-        logIn
+        signIn
     },
     Mutation: {
         createPost,

@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(0, 255, 76, 0.03);
+    background-color: rgb(151, 255, 166);
 }
 
 /* Header */
@@ -57,4 +57,9 @@ nav.navbar {
     top: 0;
     z-index: 10;
     padding: 1rem 2rem;
+}
+
+/* Create */
+.editor-container {
+     min-height: 10rem !important;
 }

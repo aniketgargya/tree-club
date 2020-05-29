@@ -3,19 +3,19 @@ import crypto from 'crypto';
 import { v1 } from 'uuid';
 import axios from 'axios';
 import { ApolloError, AuthenticationError } from 'apollo-server-micro';
-import jwt, { decode } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { mongoUri, dbName, opts } from '../database';
 import { DecodedToken } from '../../runtypes';
 
-const hashPassword = (salt, password) => crypto.createHmac('sha1', salt).update(password).digest('hex');
-const hashEmail = (email) => crypto.createHash('md5').update(email).digest("hex");
+const hashPassword = (salt: string, password: string) => crypto.createHmac('sha1', salt).update(password).digest('hex');
+const hashEmail = (email: string): string => crypto.createHash('md5').update(email).digest("hex");
 
 const getAuthorImage = async (email: string): Promise<string> => {
     try {
         const { data: { entry: [{ thumbnailUrl }] } } = await axios(`https://www.gravatar.com/${hashEmail(email)}.json`);
         return thumbnailUrl;
     } catch {
-        return "empty string";
+        return '/blank.jpg';
     }
 };
 
@@ -25,6 +25,15 @@ const imageURL = async ({ email }) => {
 
 const signUp = async (_, { email, name, password }) => {
     const client = await MongoClient.connect(mongoUri, opts);
+    if (email === "") {
+        throw new ApolloError('Please enter an email');
+    }
+    if (name === "") {
+        throw new ApolloError('Please enter a name');
+    }
+    if (password === "") {
+        throw new ApolloError('Please enter a password');
+    }
     try {
         const db = client.db(dbName);
 
@@ -74,7 +83,7 @@ const author = async ({ authorId }) => {
     }
 }
 
-const logIn = async (_, { email, password }) => {
+const signIn = async (_, { email, password }) => {
     const client = await MongoClient.connect(mongoUri, opts);
     try {
         const db = client.db(dbName);
@@ -129,4 +138,4 @@ const verify = async (token) => {
     }
 };
 
-export { signUp, logIn, verify, imageURL, author };
+export { signUp, signIn, verify, imageURL, author };

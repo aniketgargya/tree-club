@@ -1,16 +1,38 @@
-import { FC } from 'react';
+import { useContext, FC } from 'react';
+import Link from 'next/link';
 import { Nav, Navbar } from 'react-bootstrap';
+import { TokenContext } from '../contexts/';
 
-const NavBar: FC = () => (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Tree Club</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ml-auto">
-                <Nav.Link>Admin Sign In</Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
-    </Navbar>
-);
+const NavBar: FC = () => {
+    const { token, setToken } = useContext(TokenContext);
+
+    return (
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar.Brand href="#home">Tree Club</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="ml-auto">
+                    {
+                        token && (
+                            <Link href="/create">
+                                <a className="nav-link">Create</a>
+                            </Link>
+                        )
+                    }
+                    {token ?
+                        (
+                            <a href="#" className="nav-link " onClick={() => { setToken(null) }}>Sign Out</a>
+                        ) :
+                        (
+                            <Link href="/sign-in">
+                                <a className="nav-link">Sign In</a>
+                            </Link>
+                        )
+                    }
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
+    );
+};
 
 export default NavBar;

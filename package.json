@@ -6,7 +6,9 @@
     "scripts": {
         "dev": "next src",
         "build": "next build src",
-        "start": "next start src -p $PORT"
+        "start": "next start src -p $PORT",
+        "dev-build-docker": "docker build -f Dockerfile.dev . -t aniketgargya/tree-club-dev",
+        "dev-start-docker": "docker run --name=tree-club-dev --env-file ./.env -p 3000:3000 --mount type=bind,source=\"$(pwd)/src\",target=/app/src -itd aniketgargya/tree-club-dev"
     },
     "nodemonConfig": {
         "ignore": [

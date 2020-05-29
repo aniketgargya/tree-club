@@ -5,7 +5,7 @@ import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 
-import { Button, Spinner } from 'react-bootstrap';
+import { Button, Spinner, Alert } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone'
 
 import MarkdownIt from 'markdown-it';
@@ -17,7 +17,9 @@ const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
     ssr: false
 });
 
-const createPostMutation = gql`
+import { removeErrorLabel } from '../helper/formatter';
+
+const CREATE_POST = gql`
 
 mutation($markdown: String!) {
     createPost(markdown: $markdown) {
@@ -33,7 +35,7 @@ const Index = ({ clientId }) => {
     const [file, setFile] = useState(undefined);
     const [uploadingImage, setUploadingImage] = useState(false);
     const [uploadedImages, setUploadedImages] = useState([]);
-    const [mutate, { data }] = useMutation(createPostMutation);
+    const [mutate, { data, error }] = useMutation(CREATE_POST);
     const memoizedMarkDownParser = useMemo(() => (new MarkdownIt()), []);
     const router = useRouter();
 
@@ -109,7 +111,7 @@ const Index = ({ clientId }) => {
             {
                 uploadingImage ? <Spinner animation="border" className="mt-5" /> : (
                     <>
-                        <div {...getRootProps()} className="dragNDrop mt-5">
+                        <div {...getRootProps()} className="dragNDrop mt-5" style={{ backgroundColor: "white" }}>
                             <input {...getInputProps()} />
                             {
                                 isDragActive ?
@@ -129,6 +131,7 @@ const Index = ({ clientId }) => {
                     </>
                 )
             }
+            {error && <Alert className="mt-3" variant="danger">{removeErrorLabel(error.message)}</Alert>}
         </main>
     );
 };
