@@ -55,8 +55,7 @@ const signUp = async (_, { email, name, password }) => {
 
             const token = jwt.sign(
                 { data: { _id, email, name } },
-                process.env.JWT_SECRET,
-                { expiresIn: '24h' }
+                process.env.JWT_SECRET
             );
 
             return {
@@ -97,8 +96,7 @@ const signIn = async (_, { email, password }) => {
 
                 const token = jwt.sign(
                     { data: { _id, email, name } },
-                    process.env.JWT_SECRET,
-                    { expiresIn: '24h' }
+                    process.env.JWT_SECRET
                 );
 
                 return {

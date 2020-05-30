@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo'
@@ -14,6 +14,10 @@ import 'react-markdown-editor-lite/lib/index.css';
 const App = ({ Component, pageProps }) => {
     const [token, setToken] = useState(null);
     const tokenContextValue = { token, setToken };
+
+    useEffect(() => {
+        setToken(localStorage.getItem("token"))
+    }, []);
 
     const client = new ApolloClient({
         uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,

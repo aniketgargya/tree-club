@@ -27,6 +27,7 @@ const SignUp: FC = () => {
         router.replace('/');
     } else if (data) {
         router.replace('/');
+        localStorage.setItem("token", data.signUp.token);
         setToken(data.signUp.token);
     }
 
